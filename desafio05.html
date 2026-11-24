@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafio 05 - Painel de Controle Operacional</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+  <!-- BARRA DE NAVEGAÇÃO PRINCIPAL -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">DS • Bootstrap 5</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPortifolio" aria-controls="menuPortifolio" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menuPortifolio">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="desafio01.html">Desafio 01</a></li>
+          <li class="nav-item"><a class="nav-link" href="desafio02.html">Desafio 02</a></li>
+          <li class="nav-item"><a class="nav-link" href="desafio03.html">Desafio 03</a></li>
+          <li class="nav-item"><a class="nav-link" href="desafio04.html">Desafio 04</a></li>
+          <li class="nav-item"><a class="nav-link active" href="desafio05.html">Desafio 05</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAINEL -->
+  <main class="container my-5 flex-grow-1">
+
+    <!-- Alerta informativo -->
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      <strong>Atenção!</strong> Os registros abaixo são atualizados pela equipe de despacho a cada 15 minutos.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+
+    <!-- Cabeçalho com botão do modal -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+      <div>
+        <h1 class="h2 mb-0">Entregas • RotaLargo Logística</h1>
+        <small class="text-muted">Acompanhamento operacional em tempo real</small>
+      </div>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNovaEntrega">+ Nova entrega</button>
+    </div>
+
+    <!-- Tabela responsiva -->
+    <div class="card shadow-sm">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th>Código</th>
+              <th>Cliente</th>
+              <th>Destino</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="corpoTabela">
+            <tr>
+              <td>#1001</td>
+              <td>Mercado Bom Preço</td>
+              <td>Campo Largo - PR</td>
+              <td><span class="badge bg-success">Finalizado</span></td>
+            </tr>
+            <tr>
+              <td>#1002</td>
+              <td>Farmácia Saúde</td>
+              <td>Curitiba - PR</td>
+              <td><span class="badge bg-primary">Em rota</span></td>
+            </tr>
+            <tr>
+              <td>#1003</td>
+              <td>Loja Casa &amp; Cia</td>
+              <td>Araucária - PR</td>
+              <td><span class="badge bg-warning text-dark">Pendente</span></td>
+            </tr>
+            <tr>
+              <td>#1004</td>
+              <td>Oficina do Zé</td>
+              <td>Balsa Nova - PR</td>
+              <td><span class="badge bg-primary">Em rota</span></td>
+            </tr>
+            <tr>
+              <td>#1005</td>
+              <td>Padaria Pão Quente</td>
+              <td>Campo Largo - PR</td>
+              <td><span class="badge bg-success">Finalizado</span></td>
+            </tr>
+            <tr>
+              <td>#1006</td>
+              <td>Papelaria Letra Viva</td>
+              <td>São José dos Pinhais - PR</td>
+              <td><span class="badge bg-warning text-dark">Pendente</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL: cadastro de nova entrega -->
+  <div class="modal fade" id="modalNovaEntrega" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="formEntrega">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tituloModal">Cadastrar nova entrega</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="cliente" class="form-label">Cliente</label>
+              <input type="text" id="cliente" class="form-control" placeholder="Nome do cliente" required>
+            </div>
+            <div class="mb-3">
+              <label for="destino" class="form-label">Destino</label>
+              <input type="text" id="destino" class="form-control" placeholder="Cidade - UF" required>
+            </div>
+            <div class="mb-3">
+              <label for="status" class="form-label">Status</label>
+              <select id="status" class="form-select" required>
+                <option value="Pendente" selected>Pendente</option>
+                <option value="Em rota">Em rota</option>
+                <option value="Finalizado">Finalizado</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar entrega</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer class="bg-dark text-white-50 text-center py-3 mt-auto">
+    <div class="container">
+      <small>Curso Técnico em Desenvolvimento de Sistemas • SESI/SENAI Campo Largo</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Define a cor do badge de acordo com o status
+    function classeDoBadge(status) {
+      if (status === 'Finalizado') return 'bg-success';
+      if (status === 'Em rota') return 'bg-primary';
+      return 'bg-warning text-dark';
+    }
+
+    let proximoCodigo = 1007;
+
+    document.getElementById('formEntrega').addEventListener('submit', function (evento) {
+      evento.preventDefault();
+
+      const cliente = document.getElementById('cliente').value.trim();
+      const destino = document.getElementById('destino').value.trim();
+      const status = document.getElementById('status').value;
+
+      // Monta a nova linha usando textContent para evitar injeção de HTML
+      const linha = document.createElement('tr');
+
+      const tdCodigo = document.createElement('td');
+      tdCodigo.textContent = '#' + proximoCodigo++;
+
+      const tdCliente = document.createElement('td');
+      tdCliente.textContent = cliente;
+
+      const tdDestino = document.createElement('td');
+      tdDestino.textContent = destino;
+
+      const tdStatus = document.createElement('td');
+      const badge = document.createElement('span');
+      badge.className = 'badge ' + classeDoBadge(status);
+      badge.textContent = status;
+      tdStatus.appendChild(badge);
+
+      linha.append(tdCodigo, tdCliente, tdDestino, tdStatus);
+      document.getElementById('corpoTabela').appendChild(linha);
+
+      // Limpa o formulário e fecha o modal
+      this.reset();
+      bootstrap.Modal.getInstance(document.getElementById('modalNovaEntrega')).hide();
+    });
+  </script>
+</body>
+</html>
